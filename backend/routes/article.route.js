@@ -16,7 +16,6 @@ articleRoutes.route('/').get(function(req, res) {
 
 
 articleRoutes.route('/:id').get((req, res) => {
-    console.log(res)
     article.findById(req.params.id)
       .then(article => res.json(article))
       .catch(err => res.status(400).json('Error: ' + err));
@@ -36,7 +35,7 @@ articleRoutes.route('/addArticle').post(function(req, res) {
 
 
 articleRoutes.route('/update/:id').post(function(req, res) {
-    article.findById(req.params.id, function(err, todo) {
+    article.findById(req.params.id, function(err, article) {
         if (!article)
             res.status(404).send("data is not found");
         else

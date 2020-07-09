@@ -3,64 +3,56 @@ import axios from 'axios';
 
 export default class AddArticle extends Component {
 
-    constructor() {
-        super();
-
-        this.onChange = this.onChange.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
-
-        this.state = {
-            title: '',
-            body: ''
+    constructor(props) {
+        super(props);
+        this.state = {title: '',
+                    body: ''};
+    
+        this.handleChangeTitle = this.handleChangeTitle.bind(this);
+        this.handleChangeBody = this.handleChangeBody.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+      }
+    
+      handleChangeTitle(event) {
+        this.setState({value: event.target.title});
+      }
+      handleChangeBody(event) {
+        this.setState({value: event.target.body});
+      }
+    
+      handleSubmit(event) {
+        event.preventDefault();
+        const newArticle = {
+            title: this.state.title,
+            body: this.state.body
         }
-    }
-
-   
-
-    onChange(e){
-        this.setState({[e.target.name]: e.target.value})
-    }
-
-    handleChange(e){
-        this.setState({title: e.target.title, body: e.target.body})
-    }
-       
-
-    onSubmit(e) {
-        e.preventDefault()
-        const myArticle = {
-            title : this.state.title,
-            body : this.state.body
-        }
-        axios.post("http://localhost:4000/articleRouter/addArticle", myArticle, {
-        }).then(res => {
-            console.log(res)
+        axios.post("http://localhost:4000/articleRouter/addArticle/", newArticle)
+        .then(res => {
+            console.log("article added")
         })
-    }
+        .catch(function (error) {
+            console.log(error);
+        })
+
+      }
 
 
     render() {
         return (
             <div className="container">
-                <div className="row">
-                    <form>
-                        <label htmlFor ="title"></label>
-                        <textarea type ="text" 
-                                class = "form-control" 
-                                id = "title" name = "title" 
-                                value = {this.state.title} 
-                                onchange={this.handleChange}/>
-                        <label htmlFor ="body"></label>
-                        <textea type ="text" 
-                                class = "form-control" 
-                                id = "body" name = "body" 
-                                value = {this.state.body} 
-                                onchange={this.handleChange}/>
-                        <button className="btn btn-primary" type="submit" onClick={this.onSubmit}>Submit</button>
-                    </form>
-                </div>
-            </div>
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                        Title
+                        <input type="text" title={this.state.title} onChange={this.handleChangeTitle} />
+                    </label>
+                    <label>
+                        Body
+                        <input type="text" body={this.state.body} onChange={this.handleChangeBody} />
+                    </label>
+                    <input type="submit" value="Submit" />
+                </form>
+        </div>
+            
         )
     }
 }

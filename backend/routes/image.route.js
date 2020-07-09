@@ -29,25 +29,21 @@ var upload = multer({
 });
 
 // User model
-let User = require('../models/User');
+let Image = require('../models/article.model');
 
-router.post('/user-profile', upload.single('profileImg'), (req, res, next) => {
+router.post('/addImage/', upload.single('profileImg'), (req, res, next) => {
     const url = req.protocol + '://' + req.get('host')
-    const user = new User({
+    const image = new Image({
         _id: new mongoose.Types.ObjectId(),
-        title: req.body.title,
-        body: req.body.body,
-        profileImg: url + '/public/' + req.file.filename
+        profileImg: url + '/public/' + req.file.filename,
         
     });
-    user.save().then(result => {
+    image.save().then(result => {
         res.status(201).json({
-            message: "User registered successfully!",
+            message: "Image added successfully!",
             userCreated: {
                 _id: result._id,
                 profileImg: result.profileImg,
-                title: result.title,
-                body: result.body
             }
         })
     }).catch(err => {
@@ -58,15 +54,24 @@ router.post('/user-profile', upload.single('profileImg'), (req, res, next) => {
     })
 })
 
-
-
-router.get("/", (req, res, next) => {
-    User.find().then(data => {
-        res.status(200).json({
-            message: "User list retrieved successfully!",
-            users: data
-        });
+router.route('/updateImage/:id',upload.single('profileImg')).post(function(req, res) {
+    const url = req.protocol + '://' + req.get('host')
+    Image.findById(req.params.id, function(err, image) {
+        if (!image)
+            res.status(404).send("data is not found");
+        else
+            image.profileImg = url + '/public/' + req.file.filename,
+            image.save().then(image => {
+                res.json('Article updated!');
+            })
+            .catch(err => {
+                res.status(400).send("Update not possible");
+            });
     });
 });
+
+
+
+
 
 module.exports = router;

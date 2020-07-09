@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-export default class FilesUploadComponent extends Component {
+export default class AddImage extends Component {
 
     constructor(props) {
         super(props);
@@ -26,7 +26,7 @@ export default class FilesUploadComponent extends Component {
         const formData = new FormData()
         
         formData.append('profileImg', this.state.profileImg)
-        axios.post("http://localhost:4000/imageRouter/user-profile", formData, {
+        axios.post("http://localhost:4000/imageRouter/updateImage/5f04ece00555b71dd40d987b", formData, {
         }).then(res => {
             console.log(res)
         })
