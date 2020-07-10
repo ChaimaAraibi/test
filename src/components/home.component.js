@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import UpdateArticle from "./updateArticle.component"
+import UpdateImage from "./updateImage.component"
+import Popup from "reactjs-popup";
+
 
 export default class Home extends Component {
 
@@ -32,6 +36,7 @@ export default class Home extends Component {
             })
     }
 
+    
 
     render() {
         return (
@@ -46,10 +51,15 @@ export default class Home extends Component {
                                 if(window.confirm('Delete the article?')) 
                                 this.deleteArticle(article._id)}}>Delete
                             </button>
-                            <button>update</button>
+                            <Popup trigger={<button> update</button>} position="right center">
+                                <UpdateArticle id={article._id}/>
+                            </Popup>
+                            <Popup trigger={<button> add image</button>} position="right center">
+                                <UpdateImage id={article._id}/>
+                            </Popup>
                             <br/><br/><br/>
                         </div>)}
-                    <button>add a new article</button>
+                    
             </div>
         )
     }

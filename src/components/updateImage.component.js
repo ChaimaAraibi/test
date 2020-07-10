@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-export default class AddImage extends Component {
+export default class updateImage extends Component {
 
     constructor(props) {
         super(props);
@@ -27,7 +27,7 @@ export default class AddImage extends Component {
         e.preventDefault()
         const formData = new FormData()
         formData.append('profileImg', this.state.profileImg)
-        axios.post("http://localhost:4000/imageRouter/addImage", formData, {
+        axios.post("http://localhost:4000/imageRouter/updateImage/"+this.props.id, formData, {
         }).then(res => {
             console.log(res)
         }).catch(console.log("err"))

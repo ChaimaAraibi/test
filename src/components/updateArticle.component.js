@@ -1,7 +1,9 @@
+
 import React, { Component } from 'react';
 import axios from 'axios';
 
-export default class AddArticle extends Component {
+
+export default class updateArticle extends Component {
 
     constructor(props) {
         super(props);
@@ -22,19 +24,18 @@ export default class AddArticle extends Component {
     
       handleSubmit(event) {
         event.preventDefault();
-        const newArticle = {
+        const articleUpdated = {
             title: this.state.title,
             body: this.state.body
         }
-        axios.post("http://localhost:4000/articleRouter/addArticle/", newArticle)
+        axios.post('http://localhost:4000/articleRouter/update/'+this.props.id, articleUpdated)
         .then(res => {
-            console.log("article added", res)
+            console.log("article updated",res)
         })
         .catch(function (error) {
             console.log(error);
         })
-
-      }
+    }
 
 
     render() {
@@ -43,11 +44,11 @@ export default class AddArticle extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Title
-                        <textarea type="text"  value={this.state.title} onChange={this.handleChangeTitle} />
+                        <input type="text" title={this.state.title} onChange={this.handleChangeTitle} />
                     </label>
                     <label>
                         Body
-                        <textarea type="text" value={this.state.body} onChange={this.handleChangeBody} />
+                        <input type="text" body={this.state.body} onChange={this.handleChangeBody} />
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
