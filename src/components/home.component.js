@@ -3,6 +3,9 @@ import axios from 'axios';
 import UpdateArticle from "./updateArticle.component"
 import UpdateImage from "./updateImage.component"
 import Popup from "reactjs-popup";
+import "../styling/css/home.css"
+
+
 
 
 export default class Home extends Component {
@@ -13,6 +16,8 @@ export default class Home extends Component {
             articles:[]
         }
     }
+
+    
     
 
     componentDidMount() {
@@ -40,25 +45,51 @@ export default class Home extends Component {
 
     render() {
         return (
-            <div className="container">
-                    {this.state.articles.map(article => 
-                        <div>
-                            <h2>{article.title}</h2>
-                            <p>{article.body}</p>
-                            <img src={article.profileImg} width="50" height="50"/>
-                            <br/> 
-                            <button type="button" onClick={() => {
-                                if(window.confirm('Delete the article?')) 
-                                this.deleteArticle(article._id)}}>Delete
-                            </button>
-                            <Popup trigger={<button> update</button>} position="right center">
-                                <UpdateArticle id={article._id}/>
-                            </Popup>
-                            <Popup trigger={<button> add image</button>} position="right center">
-                                <UpdateImage id={article._id}/>
-                            </Popup>
-                            <br/><br/><br/>
+                <div >
+                    <div >
+                        
+                        {this.state.articles.map(article => 
+                                <div id="border">
+                                <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+                                <link href="css/blog-home.css" rel="stylesheet"/>
+                                <div class="container">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                    <h1 class="my-4">{article.title}
+                                    </h1>
+                                    <div class="card mb-4">
+                                        <img class="card-img-top" src={article.profileImg} alt="Card image cap"/>
+                                        <div class="card-body">
+                                            <p class="card-text">{article.body}</p>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <script src="./yourscript.js"></script>
+                                    <div class="col-md-4" id="edit">
+                                    <div class="card my-4" >
+                                        <h3 class="card-header">Edit this article</h3>
+                                        <div class="card-body">
+                                        
+                                        <button class="btn btn-info mb-2" id="buttons" type="button" onClick={() => {
+                                            if(window.confirm('Delete the article?')) 
+                                            this.deleteArticle(article._id)}}>Delete
+                                        </button>
+                                            <Popup contentStyle={{width: "500px", height:"300px"}}  trigger={<button class="btn btn-info mb-2" id="buttons" > Update</button>} >
+                                                <div ><UpdateArticle id={article._id}/></div>
+                                            </Popup>
+                                            <Popup  contentStyle={{width: "300px", height:"100px"}}  trigger={<button class="btn btn-info mb-2" id="buttons" > Add an image</button>} >
+                                                <UpdateImage id={article._id}/>
+                                            </Popup>
+                                        
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <script src="vendor/jquery/jquery.min.js"></script>
+                                <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
                         </div>)}
+                    </div>      
                     
             </div>
         )

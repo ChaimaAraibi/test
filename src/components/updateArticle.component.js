@@ -40,19 +40,39 @@ export default class updateArticle extends Component {
 
     render() {
         return (
-            <div className="container">
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Title
-                        <input type="text" title={this.state.title} onChange={this.handleChangeTitle} />
-                    </label>
-                    <label>
-                        Body
-                        <input type="text" body={this.state.body} onChange={this.handleChangeBody} />
-                    </label>
-                    <input type="submit" value="Submit" />
-                </form>
-        </div>
+            <div class="bg-contact2" id="background1">
+            <div class="container-contact2">
+                <div class="wrap-contact2">
+                <div className="container">
+                    <form class="contact2-form validate-form" onSubmit={this.handleSubmit}>
+                        
+                    <div class="wrap-input2 validate-input" data-validate="Title is required">
+                        <input class="input2" type="text" name="title" value={this.state.title} onChange={this.handleChangeTitle}/>
+                        <span class="focus-input2" data-placeholder="TITLE"></span>
+                    </div>
+
+                    <div class="wrap-input2 validate-input" data-validate = "Body is required">
+                        <textarea class="input2" name="body" value={this.state.body} onChange={this.handleChangeBody}></textarea>
+                        <span class="focus-input2" data-placeholder="BODY"></span>
+                    </div>
+
+
+                    <div class="container-contact2-form-btn">
+                    <div class="wrap-contact2-form-btn">
+                        <div class="contact2-form-bgbtn"></div>
+                        <button type="submit" value="Submit" class="contact2-form-btn">
+                            Publish Article
+                        </button>
+                    </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>    
+
+
+      
+    </div>
             
         )
     }

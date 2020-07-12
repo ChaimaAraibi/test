@@ -26,8 +26,9 @@ export default class updateImage extends Component {
     onSubmit(e) {
         e.preventDefault()
         const formData = new FormData()
+        console.log(this.state.profileImg)
         formData.append('profileImg', this.state.profileImg)
-        axios.post("http://localhost:4000/imageRouter/updateImage/"+this.props.id, formData, {
+        axios.post("http://localhost:4000/imageRouter/updateImage/"+ this.props.id, formData, {
         }).then(res => {
             console.log(res)
         }).catch(console.log("err"))
@@ -45,7 +46,7 @@ export default class updateImage extends Component {
                             <input type="file" onChange={this.onFileChange} />
                         </div>
                         <div className="form-group">
-                            <button className="btn btn-primary" type="submit" >Upload</button>
+                            <button class="btn btn-info mb-2" id="buttons"  type="submit" >Upload</button>
                         </div>
                     </form>
                     <br/>

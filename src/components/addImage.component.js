@@ -26,6 +26,7 @@ export default class AddImage extends Component {
     onSubmit(e) {
         e.preventDefault()
         const formData = new FormData()
+        console.log(this.state.profileImg)
         formData.append('profileImg', this.state.profileImg)
         axios.post("http://localhost:4000/imageRouter/addImage", formData, {
         }).then(res => {
