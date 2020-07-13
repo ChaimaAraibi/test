@@ -56,7 +56,8 @@ router.post('/addImage/', upload.single('profileImg'), (req, res, next) => {
     })
 })
 
-router.route('/updateImage/:id',upload.single('profileImg')).post(function(req, res) {
+router.post('/update/:id',upload.single('profileImg'),(req, res, next)=> {
+    console.log("here")
     const url = req.protocol + '://' + req.get('host')
     console.log("here")
     Image.findById(req.params.id, function(err, image) {

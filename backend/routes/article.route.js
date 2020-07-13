@@ -69,26 +69,7 @@ articleRoutes.route('/delete/:id').delete((req, res, next) => {
   })
 
 
-  router.route('/updateImage/:id',upload.single('profileImg')).post(function(req, res) {
-    const url = req.protocol + '://' + req.get('host')
-    console.log("here")
-    Image.findById(req.params.id, function(err, image) {
-        if (!image)
-            res.status(404).send("data is not found");
-        else
-            image.profileImg = url + '/public/' + req.file.filename,
-            image.save().then(result => {
-                res.status(201).json({
-                    message: "Image updated successfully!",
-                })
-            }).catch(err => {
-                console.log(err),
-                    res.status(500).json({
-                        error: err
-                    });
-            })
-    });
-});
+  
 
 
 

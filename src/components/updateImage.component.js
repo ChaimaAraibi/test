@@ -28,7 +28,7 @@ export default class updateImage extends Component {
         const formData = new FormData()
         console.log(this.state.profileImg)
         formData.append('profileImg', this.state.profileImg)
-        axios.post("http://localhost:4000/imageRouter/updateImage/"+ this.props.id, formData, {
+        axios.post("http://localhost:4000/imageRouter/update/"+ this.props.id, formData, {
         }).then(res => {
             console.log(res)
         }).catch(console.log("err"))

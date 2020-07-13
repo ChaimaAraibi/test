@@ -26,7 +26,8 @@ export default class AddArticle extends Component {
         event.preventDefault();
         const newArticle = {
             title: this.state.title,
-            body: this.state.body
+            body: this.state.body,
+            profileImg: ""
         }
         axios.post("http://localhost:4000/articleRouter/addArticle/", newArticle)
         .then(res => {
