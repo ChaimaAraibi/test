@@ -46,7 +46,7 @@ export default class updateImage extends Component {
                             <input type="file" onChange={this.onFileChange} />
                         </div>
                         <div className="form-group">
-                            <button class="btn btn-info mb-2" id="buttons"  type="submit" >Upload</button>
+                            <button onClick={() => window.location.reload(false)} class="btn btn-info mb-2" id="buttons"  type="submit" >Upload</button>
                         </div>
                     </form>
                     <br/>

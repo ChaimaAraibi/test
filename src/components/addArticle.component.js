@@ -39,6 +39,8 @@ export default class AddArticle extends Component {
 
       }
 
+      
+
 
     render() {
         return (
@@ -63,7 +65,7 @@ export default class AddArticle extends Component {
                         <div class="container-contact2-form-btn">
 						<div class="wrap-contact2-form-btn">
 							<div class="contact2-form-bgbtn"></div>
-							<button type="submit" value="Submit" class="contact2-form-btn">
+							<button onClick={() => window.location.reload(false)} type="submit" value="Submit" class="contact2-form-btn">
 								Publish Article
 							</button>
 						</div>

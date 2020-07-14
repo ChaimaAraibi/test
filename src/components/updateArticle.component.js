@@ -7,8 +7,8 @@ export default class updateArticle extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {title: '',
-                    body: ''};
+        this.state = {title: this.props.title,
+                    body:this.props.body};
     
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
         this.handleChangeBody = this.handleChangeBody.bind(this);
@@ -48,20 +48,18 @@ export default class updateArticle extends Component {
                         
                     <div class="wrap-input2 validate-input" data-validate="Title is required">
                         <input class="input2" type="text" name="title" value={this.state.title} onChange={this.handleChangeTitle}/>
-                        <span class="focus-input2" data-placeholder="TITLE"></span>
                     </div>
 
                     <div class="wrap-input2 validate-input" data-validate = "Body is required">
                         <textarea class="input2" name="body" value={this.state.body} onChange={this.handleChangeBody}></textarea>
-                        <span class="focus-input2" data-placeholder="BODY"></span>
                     </div>
 
 
                     <div class="container-contact2-form-btn">
                     <div class="wrap-contact2-form-btn">
                         <div class="contact2-form-bgbtn"></div>
-                        <button type="submit" value="Submit" class="contact2-form-btn">
-                            Publish Article
+                        <button onClick={() => window.location.reload(false)} type="submit" value="Submit" class="contact2-form-btn">
+                            Update Article
                         </button>
                     </div>
                     </div>
